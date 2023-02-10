@@ -7,7 +7,7 @@ import { EventBusService } from './_shared/event-bus.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   private roles: string[] = [];
@@ -43,16 +43,11 @@ export class AppComponent {
   }
 
   logout(): void {
-    this.authService.logout().subscribe({
-      next: res => {
-        console.log(res);
-        this.storageService.clean();
+    console.log();
 
-        window.location.reload();
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
+    this.storageService.clean();
+    this.isLoggedIn = false;
+    console.log('rohit');
+    localStorage.removeItem('token');
   }
 }
